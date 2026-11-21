@@ -1,3 +1,11 @@
+// Neon Coast Cover Studio — the entry for make.fun's "Make GTA 6 Cover Art" bounty.
+// The app itself lives in app/: a canvas-2D studio that turns a photo into a
+// GTA-style multi-panel cover (five layouts, five neon grades, genre lettering,
+// PNG export in three sizes). This file is only the hand-in plumbing: it copies
+// app/ and screenshots/ to the output directory and writes dossier.json, the
+// summary the judge reads, using the vendored make.fun library. Nothing here
+// renders the cover; the cover is drawn by app/src/cover.js in the browser.
+//
 // A working gta6-cover-art-01 entry (Node 22, standard library only): the app is this directory's app/ folder, plain
 // static files a desktop browser loads offline (app/index.html and its ES modules, no library and no network
 // request), and the program hands it in. It copies app/ and screenshots/ from beside this file to /output and writes
