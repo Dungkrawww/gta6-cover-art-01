@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Studio — GTA-style cover maker</title>
+<link rel="stylesheet" href="./style.css">
+<link rel="icon" href="data:,">
+</head>
+<body>
+<header class="topbar">
+  <h1>Neon Coast <span>Cover Studio</span></h1>
+  <p class="tag">Any photo &rarr; GTA-style multi-panel cover. Runs offline &mdash; photos never leave your machine.</p>
+</header>
+<main class="app">
+  <section class="stage">
+    <canvas id="cover" width="1080" height="1080" aria-label="Cover preview"></canvas>
+    <p class="hint" id="panelHint">Panel 1 selected &mdash; drag the photo to move it, scroll or use Zoom to crop.</p>
+    <div class="tray" aria-label="Photos">
+      <button type="button" class="thumb" data-sample="samples/pier.jpg"><img src="./samples/pier.jpg" alt="Pier sample photo"><span>Pier</span></button>
+      <button type="button" class="thumb" data-sample="samples/boulevard.jpg"><img src="./samples/boulevard.jpg" alt="Boulevard sample photo"><span>Boulevard</span></button>
+      <button type="button" class="thumb active" data-sample="samples/boardwalk.webp"><img src="./samples/boardwalk.webp" alt="Boardwalk sample photo"><span>Boardwalk</span></button>
+      <button type="button" class="thumb" data-sample="samples/neon-street.webp"><img src="./samples/neon-street.webp" alt="Neon street sample photo"><span>Neon street</span></button>
+      <label class="thumb upload">+ Upload<input id="upload" type="file" accept="image/*" hidden></label>
+    </div>
+  </section>
+  <aside class="controls">
+    <section>
+      <h2>Layout</h2>
+      <div class="row">
+        <button type="button" data-layout="hero" class="active">Hero + 3</button>
+        <button type="button" data-layout="fullbleed">Full bleed</button>
+        <button type="button" data-layout="grid4">4 panels</button>
+        <button type="button" data-layout="grid9">9 panels</button>
+        <button type="button" data-layout="tilted">Tilted</button>
+      </div>
+    </section>
+    <section>
+      <h2>Grade</h2>
+      <div class="row">
+        <button type="button" data-grade="sunset" class="active sw" style="background:linear-gradient(135deg,#2b1838,#ff5e62,#ffd194)">Sunset</button>
+        <button type="button" data-grade="neon" class="sw" style="background:linear-gradient(135deg,#0a0a26,#ff2e88,#00e5ff)">Neon</button>
+        <button type="button" data-grade="vice" class="sw" style="background:linear-gradient(135deg,#12082b,#b537f2,#ffcf5c)">Vice</button>
+        <button type="button" data-grade="gold" class="sw" style="background:linear-gradient(135deg,#1c1005,#c97b1e,#ffe9a8)">Gold</button>
+        <button type="button" data-grade="mono" class="sw" style="background:linear-gradient(135deg,#0a0a0a,#777,#fff)">Mono</button>
+      </div>
+    </section>
+    <section>
+      <h2>Lettering</h2>
+      <label>Title <input id="title" type="text" maxlength="24" value="NEON SHORE"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="40" value="Vice City nights"></label>
+      <label>Badge ribbon <input id="badge" type="text" maxlength="16" value="EST. 2026"></label>
+      <label>Star meter
+        <select id="stars">
+          <option value="0">0 stars</option>
+          <option value="1">1 star</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4" selected>4 stars</option>
+          <option value="5">5 stars</option>
+        </select>
+      </label>
+    </section>
+    <section>
+      <h2>Selected panel</h2>
+      <label>Zoom <input id="zoom" type="range" min="1" max="3" step="0.05" value="1.15"></label>
+      <div class="row">
+        <button type="button" id="resetCrop">Reset crop</button>
+        <button type="button" id="fillAll">Fill all panels</button>
+      </div>
+    </section>
+    <section>
+      <h2>Finish</h2>
+      <div class="checks">
+        <label><input id="grain" type="checkbox" checked> Film grain</label>
+        <label><input id="vignette" type="checkbox" checked> Vignette</label>
+        <label><input id="frame" type="checkbox" checked> White frame</label>
+      </div>
+      <div class="row">
+        <button type="button" id="undo">Undo</button>
+        <button type="button" id="redo">Redo</button>
+      </div>
+      <h2>Export size</h2>
+      <div class="row">
+        <button type="button" data-size="1080x1080" class="active">1080 &times; 1080</button>
+        <button type="button" data-size="1080x1350">1080 &times; 1350</button>
+        <button type="button" data-size="1920x1080">1920 &times; 1080</button>
+      </div>
+      <button type="button" id="exportOne" class="primary">Export PNG (this size)</button>
+      <button type="button" id="exportAll" class="primary">Export all 3 sizes</button>
+      <p id="status" role="status">Pick a photo, pick a layout, export.</p>
+    </section>
+  </aside>
+</main>
+<div id="errors" hidden></div>
+<div id="selftest" hidden></div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
